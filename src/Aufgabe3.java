@@ -1,6 +1,18 @@
 public static class Aufgabe3{
 
+    public boolean incorrect_input_check(int[] num1){
+        for (int number : num1) {
+            if(number < 0) return false;
+        }
+        return true;
+    }
+
     public int[] summe(int[] num1, int[] num2){
+
+        if(incorrect_input_check(num1) || incorrect_input_check(num2))
+            return new int[]{-1};
+
+
         boolean overflow = false;
         int[] sum = new int[num1.length];
 
@@ -32,6 +44,10 @@ public static class Aufgabe3{
     }
 
     public int[] diff(int[] num1, int[] num2){
+        if(incorrect_input_check(num1) || incorrect_input_check(num2))
+            return new int[]{-1};
+
+
         int[] sum = new int[num1.length];
 
         boolean diff_underflow = false;
@@ -53,6 +69,11 @@ public static class Aufgabe3{
     }
 
     public int[] multi(int[] num1, int num2){
+
+        if(incorrect_input_check(num1) || num2 < 0 || num2 >9)
+            return new int[]{-1};
+
+
         int  overflow = 0;
         int[] sum = new int[num1.length];
 
@@ -82,6 +103,9 @@ public static class Aufgabe3{
     }
 
     public int[] divi(int[] num1, int num2){
+        if(incorrect_input_check(num1) || num2 < 0 || num2 >9)
+            return new int[]{-1};
+
         int  rest = 0;
         int[] sum = new int[num1.length];
 
