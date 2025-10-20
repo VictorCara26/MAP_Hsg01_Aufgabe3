@@ -52,24 +52,64 @@ public static class Aufgabe3{
         return sum;
     }
 
+    public int[] multi(int[] num1, int num2){
+        int  overflow = 0;
+        int[] sum = new int[num1.length];
+
+
+        for(int i = num1.length - 1; i >= 0 ; i--){
+            if(overflow > 0){
+                sum[i] += overflow;
+                overflow = 0;
+            }
+
+            if(sum[i] + (num1[i] * num2) > 9){
+                overflow = (sum[i] + (num1[i] * num2)) / 10;
+            }
+
+            sum[i] = (sum[i] + (num1[i] * num2)) % 10;
+
+        }
+
+        if(overflow > 0){
+            int[] final_sum = new int[num1.length + 1];
+            final_sum[0] = overflow;
+            System.arraycopy(sum, 0, final_sum, 1, sum.length);
+            return final_sum;
+        }
+
+        return sum;
+    }
+
+
+
 }
 void main() {
     Aufgabe3 aufgabe3 = new Aufgabe3();
     int[] num1 = {1,3,0,0,0,0,0,0,0}, num2 = {8,7,0,0,0,0,0,0,0}, num3 = {8,3,0,0,0,0,0,0,0}, num4 = {5,4,0,0,0,0,0,0,0},
-    num5 = {2,3,6,0,0,0,0,0,0};
+    num5 = {2,3,9,0,0,0,0,0,0};
 
     int[] sum = aufgabe3.summe(num1, num2);
-    for(int i = 0; i < sum.length; i++){
-        System.out.print(sum[i]);
+    for (int k : sum) {
+        System.out.print(k);
         System.out.print(' ');
     }
 
     int[] diff = aufgabe3.diff(num3, num4);
         System.out.println();
-    for(int i = 0; i < diff.length; i++){
-        System.out.print(diff[i]);
+    for (int j : diff) {
+        System.out.print(j);
         System.out.print(' ');
     }
+
+    int[] multi = aufgabe3.multi(num5, 9);
+    System.out.println();
+    for (int j : multi) {
+        System.out.print(j);
+        System.out.print(' ');
+    }
+
+
 
 
 }
