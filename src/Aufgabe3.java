@@ -31,17 +31,45 @@ public static class Aufgabe3{
         return sum;
     }
 
+    public int[] diff(int[] num1, int[] num2){
+        int[] sum = new int[num1.length];
+
+        boolean diff_underflow = false;
+
+        for(int i = num1.length - 1; i >= 0 ; i--){
+            if(diff_underflow){
+                num1[i]--;
+            }
+
+            if(num1[i] - num2[i] < 0){
+                diff_underflow = true;
+                sum[i] = num1[i] - num2[i] + 10;
+            }
+            else sum[i] = num1[i] - num2[i];
+
+        }
+
+        return sum;
+    }
+
 }
 void main() {
     Aufgabe3 aufgabe3 = new Aufgabe3();
-    int[] num1 = {1,3,0,0,0,0,0,0,0}, num2 = {7,7,0,0,0,0,0,0,0};
-
+    int[] num1 = {1,3,0,0,0,0,0,0,0}, num2 = {8,7,0,0,0,0,0,0,0}, num3 = {8,3,0,0,0,0,0,0,0}, num4 = {5,4,0,0,0,0,0,0,0},
+    num5 = {2,3,6,0,0,0,0,0,0};
 
     int[] sum = aufgabe3.summe(num1, num2);
-
     for(int i = 0; i < sum.length; i++){
         System.out.print(sum[i]);
         System.out.print(' ');
     }
+
+    int[] diff = aufgabe3.diff(num3, num4);
+        System.out.println();
+    for(int i = 0; i < diff.length; i++){
+        System.out.print(diff[i]);
+        System.out.print(' ');
+    }
+
 
 }
