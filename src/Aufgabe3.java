@@ -81,13 +81,46 @@ public static class Aufgabe3{
         return sum;
     }
 
+    public int[] divi(int[] num1, int num2){
+        int  rest = 0;
+        int[] sum = new int[num1.length];
+
+        for(int i = 0; i < num1.length ; i++){
+            if(rest > 0){
+                sum[i] += rest;
+                rest = 0;
+            }
+
+            if((sum[i] * 10 + num1[i]) % num2 != 0){
+                rest = (sum[i] * 10 + num1[i]) % num2;
+            }
+
+            sum[i] = (sum[i] * 10 + num1[i]) / num2;
+
+        }
+
+        if(rest > 0){
+            int[] final_sum = new int[num1.length + 1];
+            final_sum[num1.length] = rest;
+
+            System.arraycopy(sum, 0, final_sum, 0, sum.length);
+            return final_sum;
+        }
+
+        int ct = 0;
+        while(sum[ct] == 0) ct++;
+
+        int[] final_sum = new int[num1.length - ct];
+        System.arraycopy(sum, ct, final_sum, 0, final_sum.length);
+        return final_sum;
 
 
+    }
 }
 void main() {
     Aufgabe3 aufgabe3 = new Aufgabe3();
     int[] num1 = {1,3,0,0,0,0,0,0,0}, num2 = {8,7,0,0,0,0,0,0,0}, num3 = {8,3,0,0,0,0,0,0,0}, num4 = {5,4,0,0,0,0,0,0,0},
-    num5 = {2,3,9,0,0,0,0,0,0};
+    num5 = {2,3,6,0,0,0,0,0,0};
 
     int[] sum = aufgabe3.summe(num1, num2);
     for (int k : sum) {
@@ -105,6 +138,13 @@ void main() {
     int[] multi = aufgabe3.multi(num5, 9);
     System.out.println();
     for (int j : multi) {
+        System.out.print(j);
+        System.out.print(' ');
+    }
+
+    int[] divi = aufgabe3.divi(num5, 2);
+    System.out.println();
+    for (int j : divi) {
         System.out.print(j);
         System.out.print(' ');
     }
